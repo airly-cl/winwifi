@@ -225,21 +225,20 @@ class WiFiAp:
         bssid: str = ''
         strength: int = 0
 
-        line: str
-        for line in raw_data.splitlines():
-            if ' : ' not in line:
-                continue
-            value: str = line.split(' : ', maxsplit=1)[1].strip()
-            if line.startswith('SSID'):
+        lines = raw_data.splitlines()
+        for i in range(len(lines)):
+            value: str = lines[i][lines[i].find(":")+1:].strip()
+            if i == 0:
                 ssid = value
-            elif line.startswith('    Authentication'):
+            elif i == 2:
                 auth = value
-            elif line.startswith('    Encryption'):
+            elif i == 3:
                 encrypt = value
-            elif line.startswith('    BSSID'):
+            elif i == 4:
                 bssid = value.lower()
-            elif line.startswith('         Signal'):
+            elif i == 5:
                 strength = int(value[:-1])
+
         return cls(ssid=ssid, auth=auth, encrypt=encrypt, bssid=bssid, strength=strength, raw_data=raw_data)
 
     def __init__(
