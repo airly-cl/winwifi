@@ -3,12 +3,12 @@
 A Wi-Fi CLI tool for Windows.
 It allows you to scan Wi-Fi Access Points without being an admin to disable and enable the Wi-Fi interface.
 
-Check [pipx](https://github.com/pypa/pipx) for installing as a standalone executable utility.
-
 ## Installation
 
+Clone the project and then change your current working directory to the winwifi project. 
+Run the following command
 ```
-pip install winwifi
+python setup.py install
 ```
 
 ## Usage
